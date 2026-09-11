@@ -1,4 +1,6 @@
 import './App.css'
+import heroImage from './assets/hero.png'
+import { useRef } from 'react'
 import {
   contactLinks,
   educationEntries,
@@ -46,6 +48,39 @@ function ContactIcon({ name }: { name: SocialIconName }) {
   }
 }
 
+function ProjectCarousel({ projectName, images = [] }: { projectName: string; images?: string[] }) {
+  const carouselRef = useRef<HTMLDivElement>(null)
+  const isMobileApp = projectName === 'Mountain App' || projectName === 'Vaktija'
+
+  const moveSlide = (direction: number) => {
+    carouselRef.current?.scrollBy({
+      left: direction * carouselRef.current.clientWidth,
+      behavior: 'smooth',
+    })
+  }
+
+  return (
+    <div className={`project-carousel${isMobileApp ? ' mobile-carousel' : ''}`} aria-label={`${projectName} mockup gallery`}>
+      <div className="carousel-slides" ref={carouselRef}>
+        {(images.length > 0 ? images : [null, null, null]).map((image, index) => (
+          <div className="mockup-slide" key={image ?? index} aria-label={`${projectName} mockup ${index + 1}`}>
+            {image ? <img src={image} alt={`${projectName} screen ${index + 1}`} /> : <span>App mockup {index + 1}</span>}
+          </div>
+        ))}
+      </div>
+      <div className="carousel-controls">
+        <button type="button" aria-label={`Previous ${projectName} mockup`} onClick={() => moveSlide(-1)}>
+          <span aria-hidden="true">←</span>
+        </button>
+        <span className="carousel-hint">Swipe to explore</span>
+        <button type="button" aria-label={`Next ${projectName} mockup`} onClick={() => moveSlide(1)}>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function App() {
   return (
     <div className="page-shell">
@@ -76,6 +111,7 @@ function App() {
       <main className="content">
         <section className="hero" id="about">
           <div className="hero-copy">
+            <img className="hero-image" src={heroImage} alt="" aria-hidden="true" />
             <p className="eyebrow">{siteStrings.heroTag}</p>
             <h1>{siteStrings.heroTitle}</h1>
             <p className="lead">{siteStrings.heroLead}</p>
@@ -110,9 +146,9 @@ function App() {
               <span>Now</span>
             </div>
 
-            <div className="profile-visual" aria-label="Profile placeholder image area">
-              <div className="portrait-placeholder">
-                <span>Photo</span>
+            <div className="profile-visual">
+              <div className="portrait-placeholder" aria-label="Profile image placeholder">
+                <span>Nedim</span>
               </div>
             </div>
 
@@ -167,16 +203,11 @@ function App() {
 
           <div className="project-grid">
             {projectCards.map((project) => (
-              <article key={project.name} className="project-card">
-                <div className="project-art" aria-label={`${project.name} project visual`}>
-                  <div className="project-logo">{project.logo}</div>
-                  <div className="project-mockup">
-                    <span className="mockup-line short" />
-                    <span className="mockup-line" />
-                    <span className="mockup-line" />
-                    <span className="mockup-line medium" />
-                  </div>
-                </div>
+              <article
+                key={project.name}
+                className={`project-card${project.name === 'Mountain App' || project.name === 'Vaktija' ? ' mobile-project' : ''}`}
+              >
+                <ProjectCarousel projectName={project.name} images={project.images} />
 
                 <div className="project-info">
                   <div className="project-header">
