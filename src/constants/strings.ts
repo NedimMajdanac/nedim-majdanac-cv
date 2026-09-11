@@ -1,3 +1,35 @@
+import careFlow1 from '../assets/CareFlow/CareFlow1.png'
+import careFlow2 from '../assets/CareFlow/CareFlow2.png'
+import careFlow3 from '../assets/CareFlow/CareFlow3.png'
+import codeHive1 from '../assets/CodeHive/CodeHive1.png'
+import codeHive2 from '../assets/CodeHive/CodeHive2.png'
+import codeHive3 from '../assets/CodeHive/CodeHive3.png'
+import codeHive4 from '../assets/CodeHive/CodeHive4.png'
+import codeHive5 from '../assets/CodeHive/CodeHive5.png'
+import mountain1 from '../assets/MountainApp/mountain1.jpeg'
+import mountain2 from '../assets/MountainApp/mountain2.jpeg'
+import mountain3 from '../assets/MountainApp/mountain3.jpeg'
+import mountain4 from '../assets/MountainApp/mountain4.jpeg'
+import mountain5 from '../assets/MountainApp/mountain5.jpeg'
+import mountain6 from '../assets/MountainApp/mountain6.jpeg'
+import mountain7 from '../assets/MountainApp/mountain7.jpeg'
+import orderFlow1 from '../assets/OrderFlow/OrderFlow1.png'
+import orderFlow2 from '../assets/OrderFlow/OrderFlow2.png'
+import orderFlow3 from '../assets/OrderFlow/OrderFlow3.png'
+import orderFlow4 from '../assets/OrderFlow/OrderFlow4.png'
+import orderFlow5 from '../assets/OrderFlow/OrderFlow5.png'
+import orderFlow6 from '../assets/OrderFlow/OrderFlow6.png'
+import orderFlow7 from '../assets/OrderFlow/OrderFlow7.png'
+import vaktija2 from '../assets/Vaktija/vaktija2.jpeg'
+import vaktija3 from '../assets/Vaktija/vaktija3.jpeg'
+import vaktija4 from '../assets/Vaktija/vaktrija4.jpeg'
+import vaktija5 from '../assets/Vaktija/vaktija5.jpeg'
+import vaktija6 from '../assets/Vaktija/vaktija6.jpeg'
+import vaktija7 from '../assets/Vaktija/vaktija7.jpeg'
+import vaktija8 from '../assets/Vaktija/vaktija8.jpeg'
+import vaktija9 from '../assets/Vaktija/vaktija9.jpeg'
+import vaktija10 from '../assets/Vaktija/vaktija10.jpeg'
+
 export const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Education', href: '#education' },
@@ -36,27 +68,26 @@ export const projectCards = [
   {
     name: 'Care Flow',
     type: 'Healthcare platform',
-    logo: 'CF',
     status: 'Case workflow system',
     description:
       'Workflow and care coordination platform designed to streamline processes and improve visibility across operational tasks.',
     stack: ['React', 'ASP.NET', 'SQL'],
+    images: [careFlow1, careFlow2, careFlow3],
     liveUrl: '#',
   },
   {
     name: 'Order Flow',
     type: 'Operations dashboard',
-    logo: 'OF',
     status: 'Order management tool',
     description:
       'Internal system for handling orders, tracking status, and reducing manual coordination between teams.',
     stack: ['React', 'REST API', 'PostgreSQL'],
+    images: [orderFlow1, orderFlow2, orderFlow3, orderFlow4, orderFlow5, orderFlow6, orderFlow7],
     liveUrl: '#',
   },
   {
     name: 'Court Pulse',
     type: 'Legal data tool',
-    logo: 'CP',
     status: 'Monitoring and reporting platform',
     description:
       'A case insight dashboard for monitoring legal data points and surfacing key operational trends.',
@@ -66,31 +97,40 @@ export const projectCards = [
   {
     name: 'Code Hive',
     type: 'Developer workspace',
-    logo: 'CH',
     status: 'Team collaboration app',
     description:
       'Collaborative coding and knowledge-sharing platform focused on smoother team workflows and project tracking.',
     stack: ['React', 'Docker', 'AWS'],
+    images: [codeHive1, codeHive2, codeHive3, codeHive4, codeHive5],
     liveUrl: '#',
   },
   {
     name: 'Mountain App',
     type: 'Travel & activity app',
-    logo: 'MA',
     status: 'Outdoor discovery app',
     description:
       'Mobile-friendly product concept for exploring hiking destinations, route details, and trip planning.',
     stack: ['React Native', 'API', 'Geolocation'],
+    images: [mountain1, mountain2, mountain3, mountain4, mountain5, mountain6, mountain7],
     liveUrl: '#',
   },
   {
     name: 'Finance App',
     type: 'Personal finance dashboard',
-    logo: 'FA',
     status: 'Expense and planning tool',
     description:
       'Personal finance product idea for monitoring spending, planning budgets, and keeping track of financial goals.',
     stack: ['React', 'GraphQL', 'Redis'],
+    liveUrl: '#',
+  },
+  {
+    name: 'Vaktija',
+    type: 'Prayer times app',
+    status: 'Faith and daily planning app',
+    description:
+      'A focused mobile experience for checking daily prayer times and keeping a calm, dependable rhythm throughout the day.',
+    stack: ['React Native', 'Mobile UI', 'API'],
+    images: [vaktija2, vaktija3, vaktija4, vaktija5, vaktija6, vaktija7, vaktija8, vaktija9, vaktija10],
     liveUrl: '#',
   },
 ]
