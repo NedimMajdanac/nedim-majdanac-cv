@@ -1,5 +1,6 @@
 import './App.css'
 import heroImage from './assets/hero.png'
+import profileImage from './assets/me.jpeg'
 import { useRef } from 'react'
 import {
   contactLinks,
@@ -86,8 +87,8 @@ function App() {
     <div className="page-shell">
       <header className="topbar">
         <div className="brand-wrap">
-          <div className="profile-thumb" aria-label="Profile photo placeholder">
-            <span>N</span>
+          <div className="profile-thumb" aria-label={`${siteStrings.name} profile photo`}>
+            <img src={profileImage} alt="" />
           </div>
           <div className="brand-text">
             <span className="brand-name">{siteStrings.name}</span>
@@ -147,8 +148,8 @@ function App() {
             </div>
 
             <div className="profile-visual">
-              <div className="portrait-placeholder" aria-label="Profile image placeholder">
-                <span>Nedim</span>
+              <div className="portrait-placeholder" aria-label={`${siteStrings.name} profile photo`}>
+                <img src={profileImage} alt={`${siteStrings.name} portrait`} />
               </div>
             </div>
 

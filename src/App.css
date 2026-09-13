@@ -31,10 +31,6 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  color: #07111f;
   background: linear-gradient(135deg, #d4af66, #7dd3fc);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
   overflow: hidden;
@@ -55,6 +51,14 @@
 
 .brand-name {
   color: #e2e8f0;
+
+  .portrait-placeholder img {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
+    object-position: center 22%;
+  }
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -1335,5 +1339,376 @@
 
   .project-header {
     flex-direction: column;
+  }
+}
+
+/* Minimal monochrome system */
+:root {
+  --ink: #171717;
+  --muted: #666;
+  --dim: #888;
+  --line: #d7d7d2;
+  --panel: #fff;
+  --panel-strong: #f0f0ec;
+  --gold: #171717;
+  --mint: #171717;
+}
+
+::selection {
+  color: #fff;
+  background: #171717;
+}
+
+.page-shell {
+  width: min(1120px, calc(100% - 48px));
+  padding: 24px 0 72px;
+}
+
+.topbar {
+  top: 12px;
+  padding: 10px 12px 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(246, 246, 243, 0.94);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+.profile-thumb {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  color: #fff;
+  background: var(--ink);
+  box-shadow: none;
+}
+
+.brand-name,
+.nav-cta,
+.primary-button,
+.hero-copy h1,
+.project-header h3,
+.contact-card a {
+  color: var(--ink);
+}
+
+.brand-role,
+.main-nav a,
+.lead,
+.meta-row,
+.project-description,
+.timeline-item p,
+.language-item span,
+.contact-card span,
+.focus-note {
+  color: var(--muted);
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible,
+.nav-cta:hover,
+.primary-button:hover,
+.secondary-button:hover,
+.project-link:hover,
+.social-strip a:hover,
+.contact-card a:hover {
+  color: #000;
+}
+
+.nav-cta,
+.primary-button,
+.secondary-button,
+.social-strip a {
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.nav-cta,
+.primary-button {
+  background: var(--ink);
+  color: #fff;
+}
+
+.nav-cta:hover,
+.primary-button:hover {
+  background: #444;
+  color: #fff;
+}
+
+.content {
+  gap: 56px;
+  padding-top: 64px;
+}
+
+.hero {
+  grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.7fr);
+  gap: 56px;
+  padding: 0;
+}
+
+.hero-copy,
+.profile-panel,
+.info-card,
+.projects-section,
+.skills-section,
+.contact-section {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-copy {
+  min-height: 0;
+  padding: 32px 0 0;
+}
+
+.hero-copy::after,
+.hero-image {
+  display: none;
+}
+
+.eyebrow,
+.section-label,
+.project-type,
+.contact-label {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.hero-copy h1 {
+  max-width: 720px;
+  font-size: clamp(3rem, 6vw, 5.6rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.lead {
+  max-width: 570px;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.meta-row {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.secondary-button {
+  color: var(--ink);
+}
+
+.social-strip a {
+  color: var(--muted);
+}
+
+.profile-panel {
+  align-self: end;
+  padding: 0 0 8px 28px;
+  border-left: 1px solid var(--line);
+}
+
+.panel-header,
+.focus-label,
+.panel-body li,
+.focus-note,
+.language-item strong {
+  color: var(--ink);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--ink);
+  box-shadow: none;
+}
+
+.profile-visual,
+.portrait-placeholder {
+  min-height: 0;
+}
+
+.portrait-placeholder {
+  min-height: 180px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: #ededeb;
+  color: var(--muted);
+}
+
+.panel-body ul {
+  gap: 0;
+}
+
+.panel-body li {
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+
+.info-grid {
+  gap: 56px;
+}
+
+.info-card,
+.projects-section,
+.skills-section,
+.contact-section {
+  padding: 0;
+}
+
+.info-card {
+  padding-top: 24px;
+  border-top: 1px solid var(--ink);
+}
+
+.info-card h2,
+.projects-section h2,
+.skills-section h2,
+.contact-section h2 {
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.04em;
+}
+
+.timeline-list,
+.language-list {
+  gap: 0;
+}
+
+.timeline-item,
+.language-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-period {
+  color: var(--muted);
+}
+
+.timeline-item h3,
+.skill-group h3 {
+  color: var(--ink);
+}
+
+.projects-section,
+.skills-section,
+.contact-section {
+  border-top: 1px solid var(--ink);
+  padding-top: 24px;
+}
+
+.project-grid {
+  gap: 16px;
+}
+
+.project-card {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--panel);
+}
+
+.project-carousel {
+  min-height: 240px;
+  padding: 12px;
+  background: #ededeb;
+}
+
+.mockup-slide {
+  min-height: 170px;
+  border: 1px solid #cfcfca;
+  border-radius: 2px;
+  background: #f8f8f6;
+  color: var(--dim);
+}
+
+.carousel-controls button {
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.carousel-controls button:hover,
+.carousel-controls button:focus-visible {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.carousel-hint,
+.project-status,
+.project-tag,
+.skill-pill {
+  color: var(--muted);
+}
+
+.project-info {
+  padding: 20px;
+}
+
+.project-type {
+  margin-bottom: 6px;
+}
+
+.project-status,
+.project-tag,
+.skill-pill {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: transparent;
+}
+
+.project-link {
+  color: var(--ink);
+}
+
+.project-link::after {
+  color: var(--ink);
+}
+
+.skill-groups {
+  gap: 16px;
+}
+
+.skill-group,
+.contact-card {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--panel);
+}
+
+.skill-group {
+  padding: 18px;
+}
+
+.contact-card {
+  padding: 18px;
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    width: min(100% - 28px, 620px);
+  }
+
+  .content {
+    gap: 40px;
+    padding-top: 40px;
+  }
+
+  .hero-copy {
+    padding-top: 8px;
+  }
+
+  .profile-panel {
+    padding: 24px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
   }
 }
