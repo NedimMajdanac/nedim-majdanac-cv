@@ -1,11 +1,26 @@
-import careFlow1 from '../assets/CareFlow/CareFlow1.png'
-import careFlow2 from '../assets/CareFlow/CareFlow2.png'
-import careFlow3 from '../assets/CareFlow/CareFlow3.png'
+import careFlow from '../assets/CareFlow/careflow.png'
+import careFlow1 from '../assets/CareFlow/Careflow1.png'
+import careFlow2 from '../assets/CareFlow/careflow2.png'
+import careFlow3 from '../assets/CareFlow/careflow3.png'
+import careFlow5 from '../assets/CareFlow/careflow5.png'
+import careFlow6 from '../assets/CareFlow/careflow6.png'
+import careFlow7 from '../assets/CareFlow/careflow7.png'
+import careFlow8 from '../assets/CareFlow/careflow8.png'
+import careFlow9 from '../assets/CareFlow/careflow9.png'
+import careFlow10 from '../assets/CareFlow/careflow10.png'
+import careFlow13 from '../assets/CareFlow/careflow13.png'
+import careFlow14 from '../assets/CareFlow/careflow14.png'
+import careFlow15 from '../assets/CareFlow/careflow15.png'
+import careFlow16 from '../assets/CareFlow/careflow16.png'
 import codeHive1 from '../assets/CodeHive/CodeHive1.png'
 import codeHive2 from '../assets/CodeHive/CodeHive2.png'
 import codeHive3 from '../assets/CodeHive/CodeHive3.png'
 import codeHive4 from '../assets/CodeHive/CodeHive4.png'
 import codeHive5 from '../assets/CodeHive/CodeHive5.png'
+import fintrack1 from '../assets/fintrack/fintrack1.png'
+import fintrack2 from '../assets/fintrack/fintrack2.png'
+import fintrack3 from '../assets/fintrack/fintrack3.png'
+import fintrack4 from '../assets/fintrack/fintrack4.png'
 import mountain1 from '../assets/MountainApp/mountain1.jpeg'
 import mountain2 from '../assets/MountainApp/mountain2.jpeg'
 import mountain3 from '../assets/MountainApp/mountain3.jpeg'
@@ -70,9 +85,9 @@ export const projectCards = [
     type: 'Healthcare platform',
     status: 'Case workflow system',
     description:
-      'Workflow and care coordination platform designed to streamline processes and improve visibility across operational tasks.',
-    stack: ['React', 'ASP.NET', 'SQL'],
-    images: [careFlow1, careFlow2, careFlow3],
+      'Modern healthcare enterprise soultion with a multi tenant database and role based access. Build with technologies like C#, TypeScript while using Redis cahcing and RabbitMQ',
+    stack: ['React TS', 'ASP.NET', 'SQL', 'Redis', "RabbitMQ"],
+    images: [careFlow, careFlow1, careFlow2, careFlow3, careFlow5, careFlow6, careFlow7, careFlow8, careFlow9, careFlow10, careFlow13, careFlow14, careFlow15, careFlow16],
     liveUrl: '#',
   },
   {
@@ -80,7 +95,7 @@ export const projectCards = [
     type: 'Operations dashboard',
     status: 'Order management tool',
     description:
-      'Internal system for handling orders, tracking status, and reducing manual coordination between teams.',
+      '',
     stack: ['React', 'REST API', 'PostgreSQL'],
     images: [orderFlow1, orderFlow2, orderFlow3, orderFlow4, orderFlow5, orderFlow6, orderFlow7],
     liveUrl: '#',
@@ -115,12 +130,13 @@ export const projectCards = [
     liveUrl: '#',
   },
   {
-    name: 'Finance App',
+    name: 'FinTrack',
     type: 'Personal finance dashboard',
     status: 'Expense and planning tool',
     description:
       'Personal finance product idea for monitoring spending, planning budgets, and keeping track of financial goals.',
     stack: ['React', 'GraphQL', 'Redis'],
+    images: [fintrack1, fintrack2, fintrack3, fintrack4],
     liveUrl: '#',
   },
   {
@@ -151,7 +167,7 @@ export const skillGroups = [
 ]
 
 export const contactLinks = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com', icon: 'linkedin' },
-  { label: 'GitHub', href: 'https://github.com', icon: 'github' },
+  { label: 'LinkedIn', href: 'https://ba.linkedin.com/in/nedim-majdanac-22418525a', icon: 'linkedin' },
+  { label: 'GitHub', href: 'https://github.com/NedimMajdanac', icon: 'github' },
   { label: 'Email', href: 'mailto:nedimmajdanac13@gmail.com', icon: 'email' },
 ]
