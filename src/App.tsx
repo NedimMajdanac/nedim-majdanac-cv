@@ -266,7 +266,7 @@ function App() {
           <div className="contact-card">
             <div>
               <p className="contact-label">Email</p>
-              <a href="mailto:hello@example.com">hello@example.com</a>
+              <a href="mailto:nedimmajdanac13@gmail.com">nedimmajdanac13@gmail.com</a>
             </div>
             <div>
               <p className="contact-label">Location</p>
