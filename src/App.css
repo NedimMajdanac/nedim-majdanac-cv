@@ -692,6 +692,10 @@
     justify-content: center;
   }
 
+  .nav-cta {
+    flex: 1 1 100%;
+  }
+
   .main-nav {
     order: 3;
     width: 100%;
@@ -716,6 +720,58 @@
   .page-shell {
     width: min(100% - 18px, 1200px);
     padding-top: 18px;
+  }
+
+  .content {
+    gap: 22px;
+    padding-top: 24px;
+  }
+
+  .hero {
+    gap: 16px;
+    padding: 0;
+  }
+
+  .hero-copy {
+    padding: 26px 18px 22px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.35rem, 13vw, 3.4rem);
+  }
+
+  .lead {
+    font-size: 0.98rem;
+  }
+
+  .hero-actions a,
+  .social-strip a {
+    flex: 1 1 100%;
+  }
+
+  .project-carousel {
+    min-height: 190px;
+    padding: 14px;
+  }
+
+  .mockup-slide {
+    min-height: 130px;
+  }
+
+  .mockup-slide img {
+    min-height: 130px;
+  }
+
+  .mobile-carousel .mockup-slide {
+    min-height: 220px;
+  }
+
+  .mobile-carousel .mockup-slide img {
+    height: 208px;
+  }
+
+  .carousel-hint {
+    text-align: center;
   }
 
   .topbar {
