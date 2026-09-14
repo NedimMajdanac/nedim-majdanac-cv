@@ -1712,3 +1712,113 @@
     border-left: 0;
   }
 }
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: calc(100% - 24px);
+    padding-bottom: 48px;
+  }
+
+  .topbar {
+    position: static;
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .brand-wrap {
+    justify-content: flex-start;
+  }
+
+  .main-nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+  }
+
+  .nav-cta {
+    flex: 1 1 auto;
+  }
+
+  .content {
+    gap: 32px;
+    padding-top: 32px;
+  }
+
+  .hero-copy {
+    padding: 8px 0 0;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.55rem, 13vw, 4rem);
+    overflow-wrap: anywhere;
+  }
+
+  .lead {
+    font-size: 0.95rem;
+  }
+
+  .meta-row,
+  .hero-actions,
+  .social-strip {
+    gap: 10px;
+  }
+
+  .hero-actions a,
+  .social-strip a {
+    flex: 1 1 100%;
+  }
+
+  .info-card,
+  .projects-section,
+  .skills-section,
+  .contact-section {
+    min-width: 0;
+  }
+
+  .timeline-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .timeline-period {
+    min-width: 0;
+  }
+
+  .project-card,
+  .mobile-project {
+    min-width: 0;
+  }
+
+  .project-carousel {
+    min-width: 0;
+  }
+
+  .project-info {
+    padding: 18px 16px;
+  }
+
+  .project-header h3 {
+    font-size: 1.45rem;
+    overflow-wrap: anywhere;
+  }
+
+  .project-status {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .skill-group {
+    padding: 16px;
+  }
+}
