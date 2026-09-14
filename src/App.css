@@ -51,14 +51,6 @@
 
 .brand-name {
   color: #e2e8f0;
-
-  .portrait-placeholder img {
-    width: 100%;
-    height: 100%;
-    min-height: 180px;
-    object-fit: cover;
-    object-position: center 22%;
-  }
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -1377,6 +1369,8 @@
 .profile-thumb {
   width: 38px;
   height: 38px;
+  flex: 0 0 38px;
+  aspect-ratio: 1;
   border: 1px solid var(--ink);
   border-radius: 50%;
   color: #fff;
@@ -1714,6 +1708,13 @@
 }
 
 @media (max-width: 640px) {
+  html,
+  body,
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .page-shell {
     width: calc(100% - 24px);
     padding-bottom: 48px;
@@ -1721,15 +1722,32 @@
 
   .topbar {
     position: static;
-    align-items: stretch;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
     padding: 12px;
   }
 
   .brand-wrap {
+    min-width: 0;
+    min-height: 38px;
     justify-content: flex-start;
   }
 
+  .brand-text {
+    min-width: 0;
+  }
+
+  .brand-name,
+  .brand-role {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .main-nav {
+    width: 100%;
+    min-width: 0;
     justify-content: flex-start;
     overflow-x: auto;
     flex-wrap: nowrap;
@@ -1746,12 +1764,29 @@
   }
 
   .nav-cta {
-    flex: 1 1 auto;
+    width: 100%;
   }
 
   .content {
     gap: 32px;
     padding-top: 32px;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+  }
+
+  .hero-copy {
+    order: 1;
+    width: 100%;
+  }
+
+  .profile-panel {
+    order: 2;
+    width: 100%;
   }
 
   .hero-copy {
@@ -1798,10 +1833,12 @@
   .project-card,
   .mobile-project {
     min-width: 0;
+    width: 100%;
   }
 
   .project-carousel {
     min-width: 0;
+    width: 100%;
   }
 
   .project-info {
@@ -1818,7 +1855,22 @@
     white-space: normal;
   }
 
+  .contact-card > div,
+  .contact-card a,
+  .contact-card span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
   .skill-group {
     padding: 16px;
   }
+}
+
+.portrait-placeholder img {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  object-fit: cover;
+  object-position: center 22%;
 }
