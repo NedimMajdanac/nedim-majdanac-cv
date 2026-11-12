@@ -1,18 +1,20 @@
 import './App.css'
 import heroImage from './assets/hero.png'
 import profileImage from './assets/me.jpeg'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   contactLinks,
   educationEntries,
   languageEntries,
   navItems,
   projectCards,
+  projectPageStrings,
   skillGroups,
   siteStrings,
 } from './constants/strings'
 
 type SocialIconName = 'linkedin' | 'github' | 'email'
+const themeStorageKey = 'nedim-portfolio-theme'
 
 function ContactIcon({ name }: { name: SocialIconName }) {
   const commonProps = {
@@ -69,7 +71,7 @@ function ProjectCarousel({ projectName, images = [] }: { projectName: string; im
           </div>
         ))}
       </div>
-      <div className="carousel-controls">
+      <div className="carousel-controls" onClick={(event) => event.stopPropagation()}>
         <button type="button" aria-label={`Previous ${projectName} mockup`} onClick={() => moveSlide(-1)}>
           <span aria-hidden="true">←</span>
         </button>
@@ -82,32 +84,150 @@ function ProjectCarousel({ projectName, images = [] }: { projectName: string; im
   )
 }
 
-function App() {
+type Project = (typeof projectCards)[number]
+
+function ProjectCard({ project, onSelect }: { project: Project; onSelect: (project: Project) => void }) {
+  const isMobileProject = project.name === 'Mountain App' || project.name === 'Vaktija'
+
   return (
-    <div className="page-shell">
-      <header className="topbar">
-        <div className="brand-wrap">
-          <div className="profile-thumb" aria-label={`${siteStrings.name} profile photo`}>
-            <img src={profileImage} alt="" />
+    <article
+      className={`project-card${isMobileProject ? ' mobile-project' : ''}`}
+      onClick={() => onSelect(project)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onSelect(project)
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
+      <ProjectCarousel projectName={project.name} images={project.images} />
+      <div className="project-info">
+        <div className="project-header">
+          <div>
+            <p className="project-type">{project.type}</p>
+            <h3>{project.name}</h3>
           </div>
-          <div className="brand-text">
-            <span className="brand-name">{siteStrings.name}</span>
-            <span className="brand-role">{siteStrings.role}</span>
+          <span className="project-status">{project.status}</span>
+        </div>
+        <p className="project-description">{project.description}</p>
+        <div className="tag-row">
+          {project.stack.map((item) => <span key={item} className="project-tag">{item}</span>)}
+        </div>
+        <div className="project-actions">
+          <button className="project-details-button" type="button" onClick={() => onSelect(project)}>{projectPageStrings.details}</button>
+          <a className="project-link" href={project.liveUrl} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>Live demo</a>
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose()
+    }
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = ''
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onClose])
+
+  return (
+    <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
+      <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onMouseDown={(event) => event.stopPropagation()}>
+        <button className="modal-close" type="button" aria-label={projectPageStrings.close} onClick={onClose}>×</button>
+        <div className="modal-gallery"><ProjectCarousel projectName={project.name} images={project.images} /></div>
+        <div className="modal-content">
+          <p className="project-type">{project.type}</p>
+          <h2 id="project-modal-title">{project.name}</h2>
+          <span className="project-status">{project.status}</span>
+          <p className="modal-label">{projectPageStrings.overview}</p>
+          <p className="modal-description">{project.description}</p>
+          <p className="modal-label">{projectPageStrings.implementation}</p>
+          <p className="modal-description">{project.details}</p>
+          <div className="tag-row">
+            {project.stack.map((item) => <span key={item} className="project-tag">{item}</span>)}
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
 
-        <nav className="main-nav" aria-label="Main navigation">
-          {navItems.map((item) => (
-            <a key={item.label} href={item.href}>
-              {item.label}
-            </a>
-          ))}
-        </nav>
+function SiteHeader({ isDarkTheme, onToggleTheme, onBack, isProjectsPage = false }: { isDarkTheme: boolean; onToggleTheme: () => void; onBack: () => void; isProjectsPage?: boolean }) {
+  return (
+    <header className="topbar">
+      <a className="brand-wrap" href="/" onClick={isProjectsPage ? onBack : undefined}>
+        <div className="profile-thumb" aria-label={`${siteStrings.name} profile photo`}><img src={profileImage} alt="" /></div>
+        <div className="brand-text"><span className="brand-name">{siteStrings.name}</span><span className="brand-role">{siteStrings.role}</span></div>
+      </a>
+      <nav className="main-nav" aria-label="Main navigation">
+        {navItems.map((item) => <a key={item.label} href={isProjectsPage && item.label !== 'Projects' ? `/${item.href}` : item.label === 'Projects' ? '/projects' : item.href}>{item.label}</a>)}
+      </nav>
+      <a className="nav-cta" href="/cv.pdf" download>{siteStrings.navCta}</a>
+      <button className="theme-toggle" type="button" aria-pressed={isDarkTheme} aria-label={isDarkTheme ? siteStrings.themeToggle.light : siteStrings.themeToggle.dark} onClick={onToggleTheme}>{isDarkTheme ? siteStrings.themeToggle.light : siteStrings.themeToggle.dark}</button>
+    </header>
+  )
+}
 
-        <a className="nav-cta" href="/cv.pdf" download>
-          {siteStrings.navCta}
-        </a>
-      </header>
+function ProjectsPage({ onBack, isDarkTheme, onToggleTheme }: { onBack: () => void; isDarkTheme: boolean; onToggleTheme: () => void }) {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
+  return (
+    <div className={`page-shell${isDarkTheme ? ' theme-dark' : ''}`}>
+      <SiteHeader isDarkTheme={isDarkTheme} onToggleTheme={onToggleTheme} onBack={onBack} isProjectsPage />
+      <main className="content projects-page-content">
+        <section className="projects-intro">
+          <p className="eyebrow">{projectPageStrings.eyebrow}</p>
+          <h1>{projectPageStrings.title}</h1>
+          <p className="lead">{projectPageStrings.intro}</p>
+        </section>
+        <section className="projects-section projects-index-section">
+          <div className="project-grid">{projectCards.map((project) => <ProjectCard key={project.name} project={project} onSelect={setSelectedProject} />)}</div>
+        </section>
+      </main>
+      {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
+    </div>
+  )
+}
+
+function App() {
+  const [isDarkTheme, setIsDarkTheme] = useState(() => window.localStorage.getItem(themeStorageKey) === 'dark')
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
+  useEffect(() => {
+    document.body.classList.toggle('dark-theme', isDarkTheme)
+    window.localStorage.setItem(themeStorageKey, isDarkTheme ? 'dark' : 'light')
+
+    return () => document.body.classList.remove('dark-theme')
+  }, [isDarkTheme])
+
+  useEffect(() => {
+    const handlePopState = () => setCurrentPath(window.location.pathname)
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  const navigateHome = () => {
+    if (window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/')
+      setCurrentPath('/')
+    }
+  }
+
+  if (currentPath === '/projects') {
+    return <ProjectsPage onBack={navigateHome} isDarkTheme={isDarkTheme} onToggleTheme={() => setIsDarkTheme((currentTheme) => !currentTheme)} />
+  }
+
+  return (
+    <div className={`page-shell${isDarkTheme ? ' theme-dark' : ''}`}>
+      <SiteHeader isDarkTheme={isDarkTheme} onToggleTheme={() => setIsDarkTheme((currentTheme) => !currentTheme)} onBack={navigateHome} />
 
       <main className="content">
         <section className="hero" id="about">
@@ -203,38 +323,7 @@ function App() {
           </div>
 
           <div className="project-grid">
-            {projectCards.map((project) => (
-              <article
-                key={project.name}
-                className={`project-card${project.name === 'Mountain App' || project.name === 'Vaktija' ? ' mobile-project' : ''}`}
-              >
-                <ProjectCarousel projectName={project.name} images={project.images} />
-
-                <div className="project-info">
-                  <div className="project-header">
-                    <div>
-                      <p className="project-type">{project.type}</p>
-                      <h3>{project.name}</h3>
-                    </div>
-                    <span className="project-status">{project.status}</span>
-                  </div>
-
-                  <p className="project-description">{project.description}</p>
-
-                  <div className="tag-row">
-                    {project.stack.map((item) => (
-                      <span key={item} className="project-tag">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a className="project-link" href={project.liveUrl} target="_blank" rel="noreferrer">
-                    Live demo
-                  </a>
-                </div>
-              </article>
-            ))}
+            {projectCards.map((project) => <ProjectCard key={project.name} project={project} onSelect={setSelectedProject} />)}
           </div>
         </section>
 
@@ -280,6 +369,7 @@ function App() {
           </div>
         </section>
       </main>
+      {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
     </div>
   )
 }

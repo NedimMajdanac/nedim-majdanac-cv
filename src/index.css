@@ -25,6 +25,12 @@ body {
   min-height: 100vh;
   background: #f6f6f3;
   color: #171717;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body.dark-theme {
+  background: #111512;
+  color: #f1f0e9;
 }
 
 img {
